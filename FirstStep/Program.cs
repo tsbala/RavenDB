@@ -50,8 +50,6 @@ namespace FirstStep
 	        {
                 Console.WriteLine(String.Join(" ", student.FirstName, student.LastName));
             }
-
-            Console.ReadLine();
         }
 
         static void AddStudent(IDocumentSession documentSession, Student student)
