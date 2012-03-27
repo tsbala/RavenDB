@@ -1,7 +1,8 @@
 ﻿using System;
 using Raven.Client;
-using Raven.Client.Document;
 using Domain;
+using Raven.Client.Embedded;
+
 
 namespace FirstStep
 {
@@ -9,15 +10,16 @@ namespace FirstStep
     {
         static void Main(string[] args)
         {
-            bool add = false;
-            bool query = true;
+            var add = false;
+            var query = true;
 
-            new NDesk.Options.OptionSet() {
+            new NDesk.Options.OptionSet
+            {
                 { "a|Add", v => add = v != null },
                 { "q|Query", v => query = v != null }
             }; 
 
-            using (var documentStore = new DocumentStore { Url = "http://localhost:8081" })
+            using (var documentStore = new EmbeddableDocumentStore { DataDirectory = "documentStore" })
             {
                 documentStore.Initialize();
                 using (var documentSession = documentStore.OpenSession())

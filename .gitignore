@@ -1,0 +1,36 @@
+# Windows shortcuts
+*.lnk
+
+# VS Bits
+[Oo]bj
+[Bb]in
+[Cc]lient[Bb]in
+
+*.suo
+Publish.xml
+
+# p4merge
+*.orig
+
+# other merge artifacts
+*.REMOTE.*
+*.BASE.*
+*.BACKUP.*
+*.LOCAL.*
+
+# database temp dir
+[Ww]ebsite/[Dd]atabase/[Tt]emp
+
+# Some random build artifact...
+Libs/*.dll
+
+# ReSharper
+_ReSharper.*
+*.ReSharper
+*.user
+
+#dotCover
+*.dotCover
+
+# VS Productivity Power Tools
+*.docstates
