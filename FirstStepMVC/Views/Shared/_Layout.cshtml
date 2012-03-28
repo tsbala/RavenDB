@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.7.1.min.js"></script>
+</head>
+
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="/">RavenDB with ASP.net MVC</a>
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li>
+                                    <a href="/">
+                                        <i class="icon-home icon-white"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="dropdown active">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Student<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="/Student/Add">Add Student</a>        
+                                        </li>
+                                        <li>
+                                            <a href="/Student/Query">Query Student</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @RenderBody()            
+        </div>
+        
+        <script type="text/javascript">
+            (function($) {
+                $('.dropdown-toggle').dropdown();
+            })(jQuery);
+        
+    </body>
+</html>

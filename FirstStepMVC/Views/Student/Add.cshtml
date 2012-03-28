@@ -1,0 +1,44 @@
+﻿@using Domain;
+@model Domain.Student
+
+@{
+    ViewBag.Title = "Add Student";
+}
+
+<h2>Add Student</h2>
+
+@using (Html.BeginForm("Add", "Student", FormMethod.Post, new { @class = "well" }))
+{
+    <fieldset class="">
+        <legend>Add Student</legend>
+        <div class="control-group">
+            <label for="FirstName" class="control-label">First Name</label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.FirstName, new {@class = "controls"})      
+            </div>
+        </div>
+            
+        <div class="control-group">
+            <label for="LastName" class="control-label">Last Name</label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.LastName, new {@class = "controls"})  
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="DateOfBirth" class="control-label">Date of Birth</label>
+            <div class="controls">
+                @Html.TextBoxFor(m => m.DateOfBirth, new {@class = "controls"})  
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="Gender" class="control-label">Gender</label>
+            <div class="controls">
+                @Html.EditorFor(m => m.Gender, "Enum_RadioButtonFor")    
+            </div>
+        </div>
+        <input type="submit" value="Add Student" class="btn-small btn-primary"/>
+    </fieldset>
+}
+

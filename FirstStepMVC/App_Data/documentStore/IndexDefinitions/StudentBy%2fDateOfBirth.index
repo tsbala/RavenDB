@@ -1,0 +1,18 @@
+{
+  "Name": "StudentBy/DateOfBirth",
+  "Map": "docs.Students\r\n\t.Select(s => new {Month = s.DateOfBirth.Month, Count = 1})",
+  "Maps": [
+    "docs.Students\r\n\t.Select(s => new {Month = s.DateOfBirth.Month, Count = 1})"
+  ],
+  "Reduce": "results\r\n\t.GroupBy(result => result.Month)\r\n\t.Select(g => new {Month = g.Key, Count = g.Sum(x => (System.Int32)(x.Count))})",
+  "TransformResults": null,
+  "IsMapReduce": true,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "MapReduce"
+}

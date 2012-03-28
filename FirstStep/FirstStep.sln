@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstStep", "FirstStep.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{51D6D23F-993B-433A-8E8E-0E946AB06BD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstStepMVC", "..\FirstStepMVC\FirstStepMVC.csproj", "{90BE8DE5-7794-4160-9DEE-E5328C95A165}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{51D6D23F-993B-433A-8E8E-0E946AB06BD0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{51D6D23F-993B-433A-8E8E-0E946AB06BD0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{51D6D23F-993B-433A-8E8E-0E946AB06BD0}.Release|x86.ActiveCfg = Release|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90BE8DE5-7794-4160-9DEE-E5328C95A165}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
