@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@model IEnumerable<FirstStepMVC.Models.StudentViewModel>
+﻿@model IEnumerable<FirstStepMVC.Models.StudentViewModel>
 
 @{
     ViewBag.Title = "title";
@@ -9,12 +8,12 @@
 
 @foreach (var student in Model)
 {
-    <table class="table-condensed">
-        <tr>
-            <td>@student.FirstName</td>
-            <td>@student.LastName</td>
-            <td>@student.DateOfBirth</td>
-            <td>@student.Gender</td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="span6">
+            <span class="span1">@student.FirstName</span>
+            <span class="span1">@student.LastName</span>
+            <span class="span2">@student.DateOfBirth</span>
+            <span class="span1">@student.Gender</span>
+        </div>
+    </div>
 }
