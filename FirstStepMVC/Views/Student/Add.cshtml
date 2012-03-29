@@ -1,8 +1,21 @@
 ﻿@using Domain;
-@model Domain.Student
+@model FirstStepMVC.Models.StudentViewModel
 
 @{
     ViewBag.Title = "Add Student";
+}
+
+@{
+    var enumValues = Enum.GetValues(typeof(Gender))
+                         .Cast<Gender>()
+                         .Select(e => new KeyValuePair<byte, string>((byte)e, e.ToString()));
+
+    var selectList = new SelectList(enumValues, "Key", "Value");
+}
+
+@section JSLibs
+{
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")"></script>
 }
 
 <h2>Add Student</h2>
@@ -10,7 +23,7 @@
 @using (Html.BeginForm("Add", "Student", FormMethod.Post, new { @class = "well" }))
 {
     <fieldset class="">
-        <legend>Add Student</legend>
+        <legend>Add Student</legend>    
         <div class="control-group">
             <label for="FirstName" class="control-label">First Name</label>
             <div class="controls">
@@ -28,17 +41,27 @@
         <div class="control-group">
             <label for="DateOfBirth" class="control-label">Date of Birth</label>
             <div class="controls">
-                @Html.TextBoxFor(m => m.DateOfBirth, new {@class = "controls"})  
+                @Html.EditorFor(m => m.DateOfBirth)  
             </div>
         </div>
 
         <div class="control-group">
             <label for="Gender" class="control-label">Gender</label>
             <div class="controls">
-                @Html.EditorFor(m => m.Gender, "Enum_RadioButtonFor")    
+                @Html.DropDownListFor(m => m.Gender, selectList)
             </div>
         </div>
         <input type="submit" value="Add Student" class="btn-small btn-primary"/>
     </fieldset>
 }
 
+@section Javascript
+{
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                //$('#DateOfBirth').datepicker();
+            });
+        } (jQuery))
+    </script>
+}

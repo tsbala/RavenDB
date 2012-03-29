@@ -37,6 +37,9 @@
     <Reference Include="AsyncCtpLibrary, Version=1.0.4107.18181, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\FirstStep\packages\RavenDB-Embedded.1.0.701\lib\net40\AsyncCtpLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\FirstStep\packages\AutoMapper.2.1.266\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
       <HintPath>..\FirstStep\packages\RavenDB-Embedded.1.0.701\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -58,8 +61,21 @@
     <Reference Include="Lucene.Net.Contrib.SpellChecker, Version=2.9.2.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <HintPath>..\FirstStep\packages\RavenDB-Embedded.1.0.701\lib\net40\Lucene.Net.Contrib.SpellChecker.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\FirstStep\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\FirstStep\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\FirstStep\packages\Ninject.3.0.0.15\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\FirstStep\packages\Ninject.Web.Common.3.0.0.7\lib\net40-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\FirstStep\packages\Ninject.MVC3.3.0.0.6\lib\net40-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\FirstStep\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
@@ -112,11 +128,16 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\FirstStep\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\BootStrapper.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Code\StudentApplicationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,7 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -200,7 +220,16 @@
     <Content Include="Views\Student\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\EditorTemplates\Enum_RadioButtonFor.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTempate\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

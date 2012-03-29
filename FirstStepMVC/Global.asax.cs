@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using FirstStepMVC.Code;
 
 namespace FirstStepMVC
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -27,9 +23,6 @@ namespace FirstStepMVC
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
-            //routes.MapRoute("Student", "student/{action}", new)
-
         }
 
         protected void Application_Start()
@@ -38,7 +31,6 @@ namespace FirstStepMVC
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            BootStrapper.Initialise();
         }
     }
 }
