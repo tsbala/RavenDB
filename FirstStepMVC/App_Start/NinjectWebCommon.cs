@@ -1,6 +1,8 @@
-using FirstStepMVC.Code;
+using System.Reflection;
+using FirstStepMVC.Code.ApplicationService.Student;
 using Raven.Client;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(FirstStepMVC.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(FirstStepMVC.App_Start.NinjectWebCommon), "Stop")]
@@ -62,6 +64,7 @@ namespace FirstStepMVC.App_Start
                   .ToMethod(ctx => {
                                         var documentStore = new EmbeddableDocumentStore {DataDirectory = "App_Data/DocumentStore"};
                                         documentStore.Initialize();
+                                        IndexCreation.CreateIndexes(Assembly.GetExecutingAssembly(), documentStore);
                                         return documentStore;
                                    })
                   .InSingletonScope();

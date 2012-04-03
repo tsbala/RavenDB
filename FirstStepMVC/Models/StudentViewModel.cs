@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using Domain;
 
@@ -15,7 +16,8 @@ namespace FirstStepMVC.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public string DateOfBirth { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         public Gender Gender { get; set; }

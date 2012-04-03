@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using FirstStepMVC.Code;
+using FirstStepMVC.Code.ApplicationService.Student;
 using FirstStepMVC.Models;
 
 namespace FirstStepMVC.Controllers
@@ -13,8 +13,6 @@ namespace FirstStepMVC.Controllers
             _studentApplicationService = studentApplicationService;
         }
 
-        //
-        // ADD: /Student/
         [HttpGet]
         public ActionResult Add()
         {
@@ -34,9 +32,9 @@ namespace FirstStepMVC.Controllers
 
         [ActionName("Index")]
         [HttpGet]
-        public ActionResult GetStudents()
+        public ActionResult GetStudents(string name, SearchMode searchMode = SearchMode.NotSet)
         {
-            var studentViewModels = _studentApplicationService.GetStudents();
+            var studentViewModels = _studentApplicationService.GetStudents(name, searchMode);
             return View(studentViewModels);
         }
     }

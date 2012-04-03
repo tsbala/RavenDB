@@ -1,0 +1,21 @@
+{
+  "Name": "Student/ByName",
+  "Map": "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(3), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})",
+  "Maps": [
+    "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(3), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {
+    "FirstName": "Analyzed",
+    "LastName": "Analyzed"
+  },
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Map"
+}
