@@ -5,6 +5,7 @@ using AutoMapper;
 using FirstStepMVC.Code.Indexes.Student;
 using FirstStepMVC.Models;
 using Raven.Client;
+using Raven.Client.Linq;
 
 namespace FirstStepMVC.Code.ApplicationService.Student
 {
@@ -23,7 +24,7 @@ namespace FirstStepMVC.Code.ApplicationService.Student
 
     public class StudentApplicationService : IStudentApplicationService
     {
-        private readonly IDocumentSession _documentSession;
+        private readonly IDocumentSession _session;
 
         static StudentApplicationService()
         {
@@ -34,9 +35,9 @@ namespace FirstStepMVC.Code.ApplicationService.Student
                                   });
         }
 
-        public StudentApplicationService(IDocumentSession documentSession)
+        public StudentApplicationService(IDocumentSession session)
         {
-            _documentSession = documentSession;
+            _session = session;
         }
 
         public Domain.Student AddStudent(StudentViewModel studentViewModel)
@@ -48,7 +49,7 @@ namespace FirstStepMVC.Code.ApplicationService.Student
 
             var student = Mapper.Map<Domain.Student>(studentViewModel);
 
-            _documentSession.Store(student);
+            _session.Store(student);
 
             return student;
         }
@@ -58,28 +59,34 @@ namespace FirstStepMVC.Code.ApplicationService.Student
             IEnumerable<Domain.Student> students;
             if (String.IsNullOrWhiteSpace(name))
             {
-                students = _documentSession.Query<Domain.Student>().ToList();
+                students = _session.Query<Domain.Student>().ToList();
             }
-            else
+            else 
             {
                 switch (searchMode)
                 {
                     case SearchMode.BeginsWith:
-                        students = _documentSession.Query<Domain.Student, Student_ByName>()
+                        students = _session.Query<Domain.Student, Student_ByName>()
                                         .Where(s => s.FirstName.StartsWith(name) || s.LastName.StartsWith(name))
                                         .ToList();
                         break;
                     case SearchMode.Contains:
-                        students = _documentSession.Advanced
-                                        .LuceneQuery<Domain.Student, Student_ByName>()
+                        var query = _session.Query<Student_FullSearch.Result, Student_FullSearch>()
+                                        .Where(x => x.Query == name)
+                                        .As<Domain.Student>();
+                        students = query.ToList();
 
-                                        .WhereIn("FirstName", new[] { name })
-                                        .OrElse()
-                                        .WhereIn("LastName", new[] { name })
-                                        .ToList();
+                        if (!students.Any())
+                        {
+                            var suggestions = query.Suggest();
+                            if (suggestions.Suggestions.Length == 1)
+                            {
+                                return GetStudents(suggestions.Suggestions[0], searchMode);
+                            }
+                        }
                         break;
                     default:
-                        students = _documentSession.Query<Domain.Student>().ToList();
+                        students = _session.Query<Domain.Student>().ToList();
                         break;
                 }
             }

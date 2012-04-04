@@ -136,6 +136,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Code\ApplicationService\Student\StudentApplicationService.cs" />
     <Compile Include="Code\Indexes\Student\Student_ByName.cs" />
+    <Compile Include="Code\Indexes\Student\Student_FullSearch.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Models\StudentViewModel.cs" />

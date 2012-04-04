@@ -18,8 +18,8 @@ namespace FirstStepMVC.Code.Indexes.Student
                                              s.DateOfBirth,
                                              s.Gender
                                          };
-            Indexes.Add(s => s.FirstName, FieldIndexing.Analyzed);
-            Indexes.Add(s => s.LastName, FieldIndexing.Analyzed);
+            Index(s => s.FirstName, FieldIndexing.Analyzed);
+            Index(s => s.LastName, FieldIndexing.Analyzed);
         }
     }
 }

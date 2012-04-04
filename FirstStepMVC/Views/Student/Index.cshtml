@@ -2,7 +2,7 @@
 @model IEnumerable<FirstStepMVC.Models.StudentViewModel>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Student Search";
 }
 
 <h2>Students</h2>
@@ -11,7 +11,7 @@
     @using (Html.BeginForm("Index", "Student", FormMethod.Get, new { @class="well form-search" }))
     {
         @Html.Label("name", "Enter student name to search for")
-        @Html.TextBox("name")
+        @Html.TextBox("name", String.Empty, new { @class="search-query" })
         <label class="radio">
             @Html.RadioButton("SearchMode", SearchMode.BeginsWith, new { @class="radio" })
             Name begins with
@@ -20,18 +20,27 @@
             @Html.RadioButton("SearchMode", SearchMode.Contains, new { @class = "radio" })
             Name contains
         </label>
-        <input type="submit" value="Search" class="btn-small btn-primary"/>
+        <button type="submit" class="btn">Search</button>
     }
 </div>
 
-@foreach (var student in Model)
+@if (!Model.Any())
 {
-    <div class="row">
-        <div class="span6">
-            <span class="span1">@student.FirstName</span>
-            <span class="span1">@student.LastName</span>
-            <span class="span2">@String.Format("{0:dd MMM yyyy}", student.DateOfBirth)</span>
-            <span class="span1">@student.Gender</span>
+<div class="alert alert-info">
+    <label>No matching students found</label>
+</div>
+}
+else
+{
+    foreach (var student in Model)
+    {
+        <div class="row">
+            <div class="span6">
+                <span class="span1">@student.FirstName</span>
+                <span class="span1">@student.LastName</span>
+                <span class="span2">@String.Format("{0:dd MMM yyyy}", student.DateOfBirth)</span>
+                <span class="span1">@student.Gender</span>
+            </div>
         </div>
-    </div>
+    }
 }

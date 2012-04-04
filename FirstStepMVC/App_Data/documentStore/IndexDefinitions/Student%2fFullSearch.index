@@ -1,0 +1,20 @@
+{
+  "Name": "Student/FullSearch",
+  "Map": "docs.Students\r\n\t.Select(s => new {Query = new System.Object []{s.FirstName, s.LastName}})",
+  "Maps": [
+    "docs.Students\r\n\t.Select(s => new {Query = new System.Object []{s.FirstName, s.LastName}})"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {
+    "Query": "Analyzed"
+  },
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Map"
+}
