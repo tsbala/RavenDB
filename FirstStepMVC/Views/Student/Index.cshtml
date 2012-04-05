@@ -10,7 +10,6 @@
 <div>
     @using (Html.BeginForm("Index", "Student", FormMethod.Get, new { @class="well form-search" }))
     {
-        @Html.Label("name", "Enter student name to search for")
         @Html.TextBox("name", String.Empty, new { @class="search-query" })
         <label class="radio">
             @Html.RadioButton("SearchMode", SearchMode.BeginsWith, new { @class="radio" })

@@ -1,8 +1,8 @@
 {
   "Name": "Student/ByName",
-  "Map": "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(3), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})",
+  "Map": "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(6), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})",
   "Maps": [
-    "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(3), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})"
+    "docs.Students\r\n\t.Select(s => new {FirstName = s.FirstName.Boost(6), LastName = s.LastName, DateOfBirth = s.DateOfBirth, Gender = s.Gender})"
   ],
   "Reduce": null,
   "TransformResults": null,
@@ -10,10 +10,7 @@
   "IsCompiled": false,
   "IsTemp": false,
   "Stores": {},
-  "Indexes": {
-    "FirstName": "Analyzed",
-    "LastName": "Analyzed"
-  },
+  "Indexes": {},
   "SortOptions": {},
   "Analyzers": {},
   "Fields": [],

@@ -13,13 +13,11 @@ namespace FirstStepMVC.Code.Indexes.Student
             Map = students => from s in students
                               select new
                                          {
-                                             FirstName = s.FirstName.Boost(3), 
+                                             FirstName = s.FirstName.Boost(6), 
                                              s.LastName,
                                              s.DateOfBirth,
                                              s.Gender
                                          };
-            Index(s => s.FirstName, FieldIndexing.Analyzed);
-            Index(s => s.LastName, FieldIndexing.Analyzed);
         }
     }
 }

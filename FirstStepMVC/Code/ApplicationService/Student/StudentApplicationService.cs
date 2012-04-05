@@ -67,13 +67,15 @@ namespace FirstStepMVC.Code.ApplicationService.Student
                 {
                     case SearchMode.BeginsWith:
                         students = _session.Query<Domain.Student, Student_ByName>()
-                                        .Where(s => s.FirstName.StartsWith(name) || s.LastName.StartsWith(name))
-                                        .ToList();
+                                        .Where(s => s.FirstName.StartsWith(name) || 
+                                                    s.LastName.StartsWith(name))
+                                        .ToList()
+                                        .OrderBy(s => s.FirstName);
                         break;
                     case SearchMode.Contains:
-                        var query = _session.Query<Student_FullSearch.Result, Student_FullSearch>()
-                                        .Where(x => x.Query == name)
-                                        .As<Domain.Student>();
+                        var query = _session.Query<Student_FullSearch.ReduceResult, Student_FullSearch>()
+                            .Search(x => x.Query, name)
+                            .As<Domain.Student>();
                         students = query.ToList();
 
                         if (!students.Any())

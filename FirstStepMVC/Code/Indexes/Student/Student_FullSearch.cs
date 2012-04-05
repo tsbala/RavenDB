@@ -4,9 +4,9 @@ using Raven.Client.Indexes;
 
 namespace FirstStepMVC.Code.Indexes.Student
 {
-    public class Student_FullSearch : AbstractIndexCreationTask<Domain.Student, Student_FullSearch.Result>
+    public class Student_FullSearch : AbstractIndexCreationTask<Domain.Student, Student_FullSearch.ReduceResult>
     {
-        public class Result
+        public class ReduceResult
         {
             public string Query { get; set; }
         }
@@ -14,11 +14,11 @@ namespace FirstStepMVC.Code.Indexes.Student
         public Student_FullSearch()
         {
             Map = students => from s in students
-                              select new 
+                              select new
                                          {
-                                             Query = new object[] { s.FirstName, s.LastName }, 
+                                             Query = new object[] { s.FirstName, s.LastName }
                                          };
-            Index(r => r.Query, FieldIndexing.Analyzed);
+            Indexes.Add(r => r.Query, FieldIndexing.Analyzed);
         }
     }
 }
