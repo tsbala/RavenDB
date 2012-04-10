@@ -1,4 +1,7 @@
 using System.Reflection;
+using Domain;
+using FirstStepMVC.Code.ApplicationService;
+using FirstStepMVC.Code.ApplicationService.Address;
 using FirstStepMVC.Code.ApplicationService.Student;
 using Raven.Client;
 using Raven.Client.Embedded;
@@ -60,6 +63,7 @@ namespace FirstStepMVC.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IStudentApplicationService>().To<StudentApplicationService>();
+            kernel.Bind<IApplicationService<Address>>().To<AddressApplicationService>();
             kernel.Bind<IDocumentStore>()
                   .ToMethod(ctx => {
                                         var documentStore = new EmbeddableDocumentStore {DataDirectory = "App_Data/DocumentStore"};
@@ -72,6 +76,6 @@ namespace FirstStepMVC.App_Start
                   .ToMethod(ctx => ctx.Kernel.Get<IDocumentStore>().OpenSession())
                   .InRequestScope()
                   .OnDeactivation(s => s.SaveChanges());
-        }        
+        }
     }
 }
