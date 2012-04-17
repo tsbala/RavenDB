@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Domain.Address>
+
+@{
+    ViewBag.Title = "Address List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Address List</h2>
+
+@foreach (var address in Model)
+{
+    <div class="row">
+        <div class="span14">
+            <span class="span2">@address.HouseNumber</span>
+            <span class="span2">@address.HouseName</span>
+            <span class="span2">@address.StreetName</span>
+            <span class="span1">@address.Town</span>
+            <span class="span2">@address.StreetName</span>
+            <span class="span1">@address.County</span>
+        </div>
+    </div>
+}
