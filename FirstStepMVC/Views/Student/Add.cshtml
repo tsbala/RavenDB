@@ -28,14 +28,16 @@
         <div class="control-group">
             <label for="FirstName" class="control-label">First Name</label>
             <div class="controls">
-                @Html.TextBoxFor(m => m.FirstName, new {@class = "controls"})      
+                @Html.TextBoxFor(m => m.FirstName)
+                @Html.ValidationMessageFor(m => m.FirstName)
             </div>
         </div>
             
         <div class="control-group">
             <label for="LastName" class="control-label">Last Name</label>
             <div class="controls">
-                @Html.TextBoxFor(m => m.LastName, new {@class = "controls"})  
+                @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName)
             </div>
         </div>
         
@@ -43,6 +45,7 @@
             <label for="DateOfBirth" class="control-label">Date of Birth</label>
             <div class="controls">
                 @Html.EditorFor(m => m.DateOfBirth)  
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
             </div>
         </div>
 
@@ -50,6 +53,7 @@
             <label for="Gender" class="control-label">Gender</label>
             <div class="controls">
                 @Html.DropDownListFor(m => m.Gender, selectList)
+                @Html.ValidationMessageFor(m => m.Gender)
             </div>
         </div>
         <input type="submit" value="Add Student" class="btn-small btn-primary"/>
