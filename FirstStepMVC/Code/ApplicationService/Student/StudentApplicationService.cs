@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using FirstStepMVC.Code.Indexes.Student;
 using FirstStepMVC.Models;
 using Raven.Client;
-using Raven.Client.Linq;
 
 namespace FirstStepMVC.Code.ApplicationService.Student
 {
@@ -66,25 +64,17 @@ namespace FirstStepMVC.Code.ApplicationService.Student
                 switch (searchMode) 
                 {
                     case SearchMode.BeginsWith:
-                        students = _session.Query<Domain.Student, Student_ByName>()
-                                        .Where(s => s.FirstName.StartsWith(name) || 
-                                                    s.LastName.StartsWith(name))
+                        students = _session.Advanced.LuceneQuery<Domain.Student>()
+                                        .WhereStartsWith("FirstName", name).Boost(3)
+                                        .WhereStartsWith("LastName", name)
                                         .ToList();
                             break;
                     case SearchMode.Contains:
-                        var query = _session.Query<Student_FullSearch.ReduceResult, Student_FullSearch>()
-                            .Search(x => x.Query, name)
-                            .As<Domain.Student>();
-                        students = query.ToList();
+                        students = _session.Advanced.LuceneQuery<Domain.Student>()
+                                            .Where(String.Format("FirstName:*{0}*", name)).Boost(3)
+                                            .Where(String.Format("LastName:*{0}*", name))
+                                            .ToList();
 
-                        if (!students.Any())
-                        {
-                            var suggestions = query.Suggest();
-                            if (suggestions.Suggestions.Length == 1)
-                            {
-                                return GetStudents(suggestions.Suggestions[0], searchMode);
-                            }
-                        }
                         break;
                     default:
                         students = _session.Query<Domain.Student>().ToList();
