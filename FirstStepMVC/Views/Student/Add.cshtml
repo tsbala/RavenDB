@@ -16,7 +16,8 @@
 
 @section JSLibs
 {
-    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.18.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
 }
 
 <h2>Add Student</h2>
@@ -64,9 +65,18 @@
 {
     <script type="text/javascript">
         (function ($) {
-            $(function () {
-                //$('#DateOfBirth').datepicker();
-            });
-        } (jQuery))
+            $.validator.addMethod("genderValidate", function (value) { return FirstStep.GenderValidation(value); });
+            $.validator.unobtrusive.adapters.addBool('genderrange', 'genderValidate');
+        } (jQuery));
+
+        var FirstStep = FirstStep || {};
+
+        FirstStep.GenderValidation = function (value) {
+            return (value.toLowerCase() === 'male') || (value.toLowerCase() === 'female');
+        };
+
+        FirstStep.AgeRangeValidation = function(value) {
+            
+        };
     </script>
 }
