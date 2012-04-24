@@ -15,11 +15,18 @@ namespace FirstStepMVC.Validators
 
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
-            yield return new ModelClientValidationRule()
-                             {
-                                 ErrorMessage = ErrorMessage,
-                                 ValidationType = "agerange"
-                             };
+            yield return new ModelClientAgeRangeValidationRule(ErrorMessage, Minimum.ToString(), Maximum.ToString());
+        }
+    }
+
+    public class ModelClientAgeRangeValidationRule : ModelClientValidationRule
+    {
+        public ModelClientAgeRangeValidationRule(string errorMessage, string minDateOfBirth, string maxDateOfBirth)
+        {
+            ErrorMessage = errorMessage;
+            ValidationType = "agerange"; // must be lowercase
+            ValidationParameters.Add("mindateofbirth", minDateOfBirth);
+            ValidationParameters.Add("maxdateofbirth", maxDateOfBirth);
         }
     }
 }

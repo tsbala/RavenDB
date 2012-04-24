@@ -20,7 +20,7 @@ namespace FirstStepMVC.Validators
                     ErrorMessage = ErrorMessage,
                     ValidationType = "genderrange"
                 };
-            clientValidation.ValidationParameters.Add("validgender", string.Join(",", Gender.Male, Gender.Female));
+            clientValidation.ValidationParameters.Add("validgender", string.Join(",", ((int)Gender.Male).ToString(), ((int)Gender.Female).ToString()));
             yield return clientValidation;
         }
     }

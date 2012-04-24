@@ -16,8 +16,8 @@
 
 @section JSLibs
 {
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
 }
 
 <h2>Add Student</h2>
@@ -63,20 +63,43 @@
 
 @section Javascript
 {
+    <script type="text/javascript" src="/Scripts/moment.min.js"></script>
     <script type="text/javascript">
         (function ($) {
-            $.validator.addMethod("genderValidate", function (value) { return FirstStep.GenderValidation(value); });
+            $.validator.addMethod("genderValidate",
+                function (value, element) {
+                    return FirstStep.GenderValidation(value);
+                });
             $.validator.unobtrusive.adapters.addBool('genderrange', 'genderValidate');
+
+            $.validator.unobtrusive.adapters.add('agerange', ['minDateOfBirth', 'maxDateOfBirth'], function (options) {
+                var params = {
+                    minDateOfBirth: options.params.minDateOfBirth,
+                    maxDateOfBirth: options.params.maxDateOfBirth
+                };
+
+                options.rules["agerangevalidate"] = params;
+                options.messages["agerangevalidate"] = options.message;
+            });
+
+            $.validator.addMethod("agerangevalidate", function (value, element, params) {
+                var dobEntered = moment(value, "DD-MM-YYYY"),
+                    minDateOfBirth = moment(params.minDateOfBirth, "DD-MM-YYYY"),
+                    maxDateOfBirth = moment(params.maxDateOfBirth, "DD-MM-YYYY");
+
+                return FirstStep.AgeRangeValidation(dobEntered, minDateOfBirth, maxDateOfBirth);
+
+            });
         } (jQuery));
 
         var FirstStep = FirstStep || {};
 
         FirstStep.GenderValidation = function (value) {
-            return (value.toLowerCase() === 'male') || (value.toLowerCase() === 'female');
+            return (value.toLowerCase() === '1') || (value.toLowerCase() === '2');
         };
 
-        FirstStep.AgeRangeValidation = function(value) {
-            
+        FirstStep.AgeRangeValidation = function (dobEntered, minDateOfBirth, maxDateOfBirth) {
+            return dobEntered >= minDateOfBirth && dobEntered <= maxDateOfBirth;
         };
     </script>
 }
