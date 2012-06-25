@@ -140,6 +140,7 @@
     <Compile Include="Code\ApplicationService\Address\AddressApplicationService.cs" />
     <Compile Include="Code\ApplicationService\IApplicationService.cs" />
     <Compile Include="Code\ApplicationService\Student\StudentApplicationService.cs" />
+    <Compile Include="Code\Indexes\Address\Address_FullSearch.cs" />
     <Compile Include="Code\Indexes\Student\Student_ByName.cs" />
     <Compile Include="Code\Indexes\Student\Student_FullSearch.cs" />
     <Compile Include="Controllers\AddressController.cs" />
@@ -249,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Address\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Address\Add.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

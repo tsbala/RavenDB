@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div>
+    @using (Html.BeginForm("Index", "Address", FormMethod.Get, new { @class="well form-search" }))
+    {
+        @Html.TextBox("query", String.Empty, new { @class="search-query" })
+        <button type="submit" class="btn">Search</button>
+    }
+</div>
+
 <h2>Address List</h2>
 
 @foreach (var address in Model)

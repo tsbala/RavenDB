@@ -68,7 +68,7 @@ namespace FirstStepMVC.Code.ApplicationService.Student
                                         .WhereStartsWith("FirstName", name).Boost(3)
                                         .WhereStartsWith("LastName", name)
                                         .ToList();
-                            break;
+                        break;
                     case SearchMode.Contains:
                         students = _session.Advanced.LuceneQuery<Domain.Student>()
                                             .Where(String.Format("FirstName:*{0}*", name)).Boost(3)

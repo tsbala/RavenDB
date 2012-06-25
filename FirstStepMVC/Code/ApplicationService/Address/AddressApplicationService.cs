@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Raven.Client;
+using FirstStepMVC.Code.Indexes.Address;
+using Raven.Client.Linq;
 
 namespace FirstStepMVC.Code.ApplicationService.Address
 {
@@ -12,7 +14,16 @@ namespace FirstStepMVC.Code.ApplicationService.Address
 
         public override IEnumerable<Domain.Address> Search(string query)
         {
-            return Session.Query<Domain.Address>().ToList();
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return Session.Query<Domain.Address>()
+                              .ToList();
+            }
+
+            return Session.Query<Address_FullSearch.ReduceResult, Address_FullSearch>()
+                          .Where(q => q.Query == query)
+                          .As<Domain.Address>()
+                          .ToList();
         }
     }
 }

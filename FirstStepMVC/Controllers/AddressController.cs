@@ -7,23 +7,20 @@ namespace FirstStepMVC.Controllers
 {
     public class AddressController : Controller
     {
-        private readonly IApplicationService<Address> _addresApplicationService;
+        private readonly IApplicationService<Address> _addressApplicationService;
 
-        public AddressController(IApplicationService<Domain.Address> addresApplicationService)
+        public AddressController(IApplicationService<Domain.Address> addressApplicationService)
         {
-            _addresApplicationService = addresApplicationService;
+            _addressApplicationService = addressApplicationService;
         }
 
-        //
-        // GET: /Address/
-
-        public ActionResult Index()
+        public ActionResult Index(string query)
         {
-            var addresses = _addresApplicationService.Search(null);
+            var addresses = _addressApplicationService.Search(query);
 
             if (!addresses.Any())
             {
-                addresses = _addresApplicationService.PopulateDummyDataAndReturnAsList();
+                addresses = _addressApplicationService.PopulateDummyDataAndReturnAsList();
             }
 
             return View(addresses);
